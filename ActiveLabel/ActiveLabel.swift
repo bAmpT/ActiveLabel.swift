@@ -272,7 +272,7 @@ typealias ElementTuple = (range: NSRange, element: ActiveElement, type: ActiveTy
         
         for (type, elements) in activeElements {
         
-            attributes[NSUnderlineStyleAttributeName] = NSUnderlineStyle.ByWord.rawValue | NSUnderlineStyle.StyleSingle.rawValue
+            attributes[NSUnderlineStyleAttributeName] = NSUnderlineStyle.ByWord.rawValue | NSUnderlineStyle.StyleThick.rawValue
             
             switch type {
             case .Mention: attributes[NSUnderlineColorAttributeName] = mentionColor
