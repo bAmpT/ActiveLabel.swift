@@ -270,15 +270,15 @@ typealias ElementTuple = (range: NSRange, element: ActiveElement, type: ActiveTy
         attributes[NSForegroundColorAttributeName] = textColor
         mutAttrString.addAttributes(attributes, range: range)
         
-        attributes[NSForegroundColorAttributeName] = mentionColor
-        
         for (type, elements) in activeElements {
+        
+            attributes[NSUnderlineStyleAttributeName] = NSUnderlineStyle.ByWord.rawValue | NSUnderlineStyle.StyleSingle.rawValue
             
             switch type {
-            case .Mention: attributes[NSForegroundColorAttributeName] = mentionColor
-            case .Hashtag: attributes[NSForegroundColorAttributeName] = hashtagColor
-            case .URL: attributes[NSForegroundColorAttributeName] = URLColor
-            case .Custom: attributes[NSForegroundColorAttributeName] = customColor[type] ?? defaultCustomColor
+            case .Mention: attributes[NSUnderlineColorAttributeName] = mentionColor
+            case .Hashtag: attributes[NSUnderlineColorAttributeName] = hashtagColor
+            case .URL: attributes[NSUnderlineColorAttributeName] = URLColor
+            case .Custom: attributes[NSUnderlineColorAttributeName] = customColor[type] ?? defaultCustomColor
             }
             
             for element in elements {
@@ -351,7 +351,7 @@ typealias ElementTuple = (range: NSRange, element: ActiveElement, type: ActiveTy
             case .URL: unselectedColor = URLColor
             case .Custom: unselectedColor = customColor[selectedElement.type] ?? defaultCustomColor
             }
-            attributes[NSForegroundColorAttributeName] = unselectedColor
+            attributes[NSForegroundColorAttributeName] = textColor
         }
         
         textStorage.addAttributes(attributes, range: selectedElement.range)
